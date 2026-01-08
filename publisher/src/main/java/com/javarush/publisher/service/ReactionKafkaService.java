@@ -1,17 +1,15 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.model.reaction.ReactionEvent;
-import com.javarush.reactflow.model.reaction.ReactionRequestTo;
-import com.javarush.reactflow.model.reaction.ReactionResponseTo;
+import com.javarush.publisher.exception.TopicNotFoundException;
+import com.javarush.publisher.model.reaction.ReactionEvent;
+import com.javarush.publisher.model.reaction.ReactionRequestTo;
+import com.javarush.publisher.model.reaction.ReactionResponseTo;
+import com.javarush.publisher.repository.hibernate.TopicHibernateRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestClient;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,12 +19,8 @@ import java.util.Locale;
 @AllArgsConstructor
 @Slf4j
 public class ReactionKafkaService implements CrudService<ReactionRequestTo, ReactionResponseTo> {
+    private final TopicHibernateRepository topicHibernateRepository;
     private final ReactionProducerService producerService;
-    private final RestClient restClient;
-    public static final ParameterizedTypeReference<List<ReactionResponseTo>> LIST_NOTE_RESPONSE_TO =
-            new ParameterizedTypeReference<>() {
-            };
-
 
     public List<ReactionResponseTo> getAll() {
         ReactionEvent event = new ReactionEvent(ReactionEvent.Operation.GET_ALL, Locale.getDefault());
@@ -35,6 +29,9 @@ public class ReactionKafkaService implements CrudService<ReactionRequestTo, Reac
 
     @Transactional
     public ReactionResponseTo create(ReactionRequestTo dto) {
+        if (!topicHibernateRepository.existsById(dto.getTopicId())) {
+            throw new TopicNotFoundException("Topic not found with id " + dto.getTopicId());
+        }
         ReactionEvent event = new ReactionEvent(ReactionEvent.Operation.CREATE, dto, Locale.getDefault());
         return producerService.send(event).getFirst();
     }
@@ -52,6 +49,9 @@ public class ReactionKafkaService implements CrudService<ReactionRequestTo, Reac
 
     @Transactional
     public boolean deleteById(Long reactionId) {
+        ReactionResponseTo responseTo = getById(reactionId);
+        if (responseTo == null) return false;
+
         ReactionEvent event = new ReactionEvent(ReactionEvent.Operation.DELETE_BY_ID, reactionId, Locale.getDefault());
         List<ReactionResponseTo> response = producerService.send(event);
         return response.isEmpty();

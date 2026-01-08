@@ -1,4 +1,4 @@
-package com.javarush.reactflow.repository;
+package com.javarush.publisher.repository;
 
 import java.util.Collection;
 import java.util.Optional;

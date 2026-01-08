@@ -1,15 +1,16 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.exception.WriterAlreadyExistsException;
-import com.javarush.reactflow.exception.WriterNotFoundException;
-import com.javarush.reactflow.mapper.WriterDto;
-import com.javarush.reactflow.model.writer.Writer;
-import com.javarush.reactflow.model.writer.WriterRequestTo;
-import com.javarush.reactflow.model.writer.WriterResponseTo;
-import com.javarush.reactflow.repository.hibernate.WriterHibernateRepository;
-import com.javarush.reactflow.util.ResourceBundleManager;
+import com.javarush.publisher.exception.WriterAlreadyExistsException;
+import com.javarush.publisher.exception.WriterNotFoundException;
+import com.javarush.publisher.mapper.WriterDto;
+import com.javarush.publisher.model.writer.Writer;
+import com.javarush.publisher.model.writer.WriterRequestTo;
+import com.javarush.publisher.model.writer.WriterResponseTo;
+import com.javarush.publisher.repository.hibernate.WriterHibernateRepository;
+import com.javarush.publisher.util.ResourceBundleManager;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class WriterService {
     private WriterHibernateRepository repository;
     private WriterDto mapper;
+    private PasswordEncoder passwordEncoder;
 
     public Collection<WriterResponseTo> getAll() {
         return repository.findAll().stream().map(mapper::toDto).collect(Collectors.toList());
@@ -36,8 +38,14 @@ public class WriterService {
         if (repository.existsWriterByLogin(writerRequestTo.getLogin())) {
             throw new WriterAlreadyExistsException(ResourceBundleManager.BUNDLE_MESSAGES.getString("exception.writer_already_exists"));
         }
+
+        encodePassword(writerRequestTo);
         Writer writer = repository.save(mapper.fromDto(writerRequestTo));
         return mapper.toDto(writer);
+    }
+
+    private void encodePassword(WriterRequestTo writerRequestTo) {
+        writerRequestTo.setPassword(passwordEncoder.encode(writerRequestTo.getPassword()));
     }
 
     @Transactional
@@ -58,6 +66,7 @@ public class WriterService {
 
     @Transactional
     public WriterResponseTo update(WriterRequestTo writerRequestTo) {
+        encodePassword(writerRequestTo);
         Writer writer = repository.save(mapper.fromDto(writerRequestTo));
         return mapper.toDto(writer);
     }

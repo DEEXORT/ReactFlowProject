@@ -1,4 +1,4 @@
-package com.javarush.reactflow.exception;
+package com.javarush.publisher.exception;
 
 public class MarkerNotFoundException extends RuntimeException {
     public MarkerNotFoundException(String message) {

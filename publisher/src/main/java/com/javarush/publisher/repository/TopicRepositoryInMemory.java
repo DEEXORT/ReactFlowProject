@@ -1,6 +1,6 @@
-package com.javarush.reactflow.repository;
+package com.javarush.publisher.repository;
 
-import com.javarush.reactflow.model.topic.Topic;
+import com.javarush.publisher.model.topic.Topic;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

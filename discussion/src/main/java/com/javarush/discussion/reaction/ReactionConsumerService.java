@@ -2,6 +2,7 @@ package com.javarush.discussion.reaction;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.javarush.discussion.exception.ReactionNotFoundException;
 import com.javarush.discussion.reaction.model.ReactionEvent;
 import com.javarush.discussion.reaction.model.ReactionRequestTo;
 import com.javarush.discussion.reaction.model.ReactionResponseTo;
@@ -10,14 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
+import org.springframework.http.HttpStatus;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +49,10 @@ public class ReactionConsumerService {
                 case CREATE -> List.of(reactionService.create(requestTo, locale));
                 case UPDATE -> List.of(reactionService.update(requestTo, locale));
                 case DELETE_BY_ID -> {
-                    reactionService.deleteById(event.id(), locale);
+                    boolean deleted = reactionService.deleteById(event.id(), locale);
+                    if (!deleted) {
+                        throw new ReactionNotFoundException(idMessage);
+                    }
                     yield List.of();
                 }
                 case GET_ALL -> reactionService.getAll();
@@ -66,6 +69,19 @@ public class ReactionConsumerService {
             kafkaTemplate.send(producerRecord);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error parsing reaction request", e);
+        } catch (ReactionNotFoundException e) {
+            sendErrorNotFoundResponse(idMessage, header);
         }
+    }
+
+    private void sendErrorNotFoundResponse(String idMessage, Header header) {
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(
+                RESPONSE_TOPIC,
+                idMessage,
+                HttpStatus.NOT_FOUND.toString()
+        );
+        producerRecord.headers().add(header);
+
+        kafkaTemplate.send(producerRecord);
     }
 }

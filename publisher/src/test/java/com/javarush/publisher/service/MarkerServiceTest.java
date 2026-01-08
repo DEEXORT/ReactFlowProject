@@ -1,12 +1,10 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.mapper.MarkerDto;
-import com.javarush.reactflow.model.marker.Marker;
-import com.javarush.reactflow.model.marker.MarkerRequestTo;
-import com.javarush.reactflow.model.marker.MarkerResponseTo;
-import com.javarush.reactflow.repository.hibernate.MarkerHibernateRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
+import com.javarush.publisher.mapper.MarkerDto;
+import com.javarush.publisher.model.marker.Marker;
+import com.javarush.publisher.model.marker.MarkerRequestTo;
+import com.javarush.publisher.model.marker.MarkerResponseTo;
+import com.javarush.publisher.repository.hibernate.MarkerHibernateRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

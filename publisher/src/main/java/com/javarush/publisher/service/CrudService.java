@@ -1,4 +1,4 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
 import java.util.List;
 

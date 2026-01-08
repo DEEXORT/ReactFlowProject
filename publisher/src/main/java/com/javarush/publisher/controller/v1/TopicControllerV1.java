@@ -1,4 +1,4 @@
-package com.javarush.publisher.controller;
+package com.javarush.publisher.controller.v1;
 
 import com.javarush.publisher.model.topic.TopicRequestTo;
 import com.javarush.publisher.model.topic.TopicResponseTo;
@@ -22,7 +22,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/api/v1.0/topics")
 @AllArgsConstructor
-public class TopicController {
+public class TopicControllerV1 {
     private final TopicService topicService;
 
     @GetMapping

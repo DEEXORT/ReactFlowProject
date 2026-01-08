@@ -1,4 +1,4 @@
-package com.javarush.reactflow.exception;
+package com.javarush.publisher.exception;
 
 public class WriterNotFoundException extends RuntimeException {
     public WriterNotFoundException(String message) {

@@ -1,4 +1,4 @@
-package com.javarush.reactflow.model.reaction;
+package com.javarush.publisher.model.reaction;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

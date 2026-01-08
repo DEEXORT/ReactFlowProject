@@ -1,4 +1,4 @@
-package com.javarush.publisher.controller;
+package com.javarush.publisher.controller.v1;
 
 import com.javarush.publisher.model.writer.WriterRequestTo;
 import com.javarush.publisher.model.writer.WriterResponseTo;

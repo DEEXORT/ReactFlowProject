@@ -1,10 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход в систему</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-$END$
+<div class="container">
+  <!-- Левая панель с приветствием -->
+  <div class="left-panel">
+    <div class="logo">
+      <i class="fas fa-lock"></i>
+      <h1>SecureAuth</h1>
+    </div>
+    <h1>Добро пожаловать</h1>
+    <p>Войдите в свой аккаунт для доступа ко всем возможностям платформы. Мы обеспечиваем безопасность и удобство вашей работы.</p>
+    <div class="features">
+      <div class="feature-item">
+        <i class="fas fa-shield-alt"></i>
+        <span>Безопасное соединение</span>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-bolt"></i>
+        <span>Быстрый вход через OAuth</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Правая панель с формой -->
+  <div class="right-panel">
+    <div class="form-header">
+      <h2>Вход в систему</h2>
+      <p>Введите свои учетные данные или войдите через соцсети</p>
+    </div>
+
+    <!-- Форма логина -->
+    <form th:action="@{/perform_login}" th:method="post" id="loginForm">
+      <div class="form-group">
+        <label for="username">Имя пользователя</label>
+        <div class="input-with-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" id="username" placeholder="Введите имя пользователя" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" id="password" placeholder="Введите пароль" required>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-sign-in-alt"></i>
+        Войти
+      </button>
+
+      <div class="forgot-password">
+        <a href="/forgot-password">Забыли пароль?</a>
+      </div>
+    </form>
+
+    <!-- Разделитель -->
+    <div class="divider">
+      <span>Или войдите через</span>
+    </div>
+
+    <!-- Кнопки OAuth -->
+    <div class="social-login">
+      <a href="/oauth/keycloak" class="social-btn keycloak">
+        <i class="fas fa-key"></i>
+        Войти через Keycloak
+      </a>
+      <a href="/oauth/github" class="social-btn github">
+        <i class="fab fa-github"></i>
+        Войти через GitHub
+      </a>
+      <a href="/oauth/google" class="social-btn google">
+        <i class="fab fa-google"></i>
+        Войти через Google
+      </a>
+    </div>
+
+    <!-- Дополнительные ссылки -->
+    <div class="footer-links">
+      <span>Нет аккаунта? <a href="/register">Зарегистрироваться</a></span>
+      <br>
+      <span class="copyright">
+                    © 2023 SecureAuth. Все права защищены.
+                </span>
+    </div>
+  </div>
+</div>
 </body>
 </html>

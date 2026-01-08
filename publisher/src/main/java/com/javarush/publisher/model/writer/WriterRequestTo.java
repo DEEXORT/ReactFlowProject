@@ -1,5 +1,6 @@
-package com.javarush.reactflow.model.writer;
+package com.javarush.publisher.model.writer;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,4 +23,6 @@ public class WriterRequestTo {
     String firstname;
     @Size(min = 2, max = 64)
     String lastname;
+    @Builder.Default
+    String role = "CUSTOMER";
 }

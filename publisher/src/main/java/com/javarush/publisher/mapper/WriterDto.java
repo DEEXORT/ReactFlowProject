@@ -1,8 +1,8 @@
-package com.javarush.reactflow.mapper;
+package com.javarush.publisher.mapper;
 
-import com.javarush.reactflow.model.writer.Writer;
-import com.javarush.reactflow.model.writer.WriterRequestTo;
-import com.javarush.reactflow.model.writer.WriterResponseTo;
+import com.javarush.publisher.model.writer.Writer;
+import com.javarush.publisher.model.writer.WriterRequestTo;
+import com.javarush.publisher.model.writer.WriterResponseTo;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

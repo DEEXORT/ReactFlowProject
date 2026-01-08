@@ -1,8 +1,8 @@
-package com.javarush.reactflow.mapper;
+package com.javarush.publisher.mapper;
 
-import com.javarush.reactflow.model.reaction.Reaction;
-import com.javarush.reactflow.model.reaction.ReactionRequestTo;
-import com.javarush.reactflow.model.reaction.ReactionResponseTo;
+import com.javarush.publisher.model.reaction.Reaction;
+import com.javarush.publisher.model.reaction.ReactionRequestTo;
+import com.javarush.publisher.model.reaction.ReactionResponseTo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

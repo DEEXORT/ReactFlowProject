@@ -1,7 +1,7 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.model.reaction.ReactionRequestTo;
-import com.javarush.reactflow.model.reaction.ReactionResponseTo;
+import com.javarush.publisher.model.reaction.ReactionRequestTo;
+import com.javarush.publisher.model.reaction.ReactionResponseTo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;

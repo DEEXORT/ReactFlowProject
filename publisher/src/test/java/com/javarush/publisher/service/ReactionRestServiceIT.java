@@ -1,11 +1,11 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.model.reaction.ReactionRequestTo;
-import com.javarush.reactflow.model.reaction.ReactionResponseTo;
-import com.javarush.reactflow.model.topic.TopicRequestTo;
-import com.javarush.reactflow.model.topic.TopicResponseTo;
-import com.javarush.reactflow.model.writer.WriterRequestTo;
-import com.javarush.reactflow.model.writer.WriterResponseTo;
+import com.javarush.publisher.model.reaction.ReactionRequestTo;
+import com.javarush.publisher.model.reaction.ReactionResponseTo;
+import com.javarush.publisher.model.topic.TopicRequestTo;
+import com.javarush.publisher.model.topic.TopicResponseTo;
+import com.javarush.publisher.model.writer.WriterRequestTo;
+import com.javarush.publisher.model.writer.WriterResponseTo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

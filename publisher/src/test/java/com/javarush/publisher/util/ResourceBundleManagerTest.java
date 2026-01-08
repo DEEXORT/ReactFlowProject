@@ -1,4 +1,4 @@
-package com.javarush.reactflow.util;
+package com.javarush.publisher.util;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

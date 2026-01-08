@@ -1,6 +1,6 @@
-package com.javarush.reactflow.exception;
+package com.javarush.publisher.exception;
 
-import com.javarush.reactflow.model.ValidationErrorResponse;
+import com.javarush.publisher.model.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

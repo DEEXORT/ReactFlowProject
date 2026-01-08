@@ -1,12 +1,12 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.exception.MarkerAlreadyExistsException;
-import com.javarush.reactflow.exception.MarkerNotFoundException;
-import com.javarush.reactflow.mapper.MarkerDto;
-import com.javarush.reactflow.model.marker.Marker;
-import com.javarush.reactflow.model.marker.MarkerRequestTo;
-import com.javarush.reactflow.model.marker.MarkerResponseTo;
-import com.javarush.reactflow.repository.hibernate.MarkerHibernateRepository;
+import com.javarush.publisher.exception.MarkerAlreadyExistsException;
+import com.javarush.publisher.exception.MarkerNotFoundException;
+import com.javarush.publisher.mapper.MarkerDto;
+import com.javarush.publisher.model.marker.Marker;
+import com.javarush.publisher.model.marker.MarkerRequestTo;
+import com.javarush.publisher.model.marker.MarkerResponseTo;
+import com.javarush.publisher.repository.hibernate.MarkerHibernateRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

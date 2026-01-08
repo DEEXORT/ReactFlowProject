@@ -1,22 +1,20 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javarush.reactflow.model.reaction.ReactionEvent;
-import com.javarush.reactflow.model.reaction.ReactionRequestTo;
-import com.javarush.reactflow.model.reaction.ReactionResponseTo;
-import lombok.AllArgsConstructor;
+import com.javarush.publisher.exception.ReactionNotFoundException;
+import com.javarush.publisher.model.reaction.ReactionEvent;
+import com.javarush.publisher.model.reaction.ReactionResponseTo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.header.Header;
+import org.springframework.http.HttpStatus;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Exchanger;
@@ -47,7 +45,14 @@ public class ReactionProducerService {
             record.headers().add("uuid", uuid.toString().getBytes());
             log.debug("Sending reaction request to {}", event);
             kafkaTemplate.send(record);
-            return exchanger.exchange(event, 1, TimeUnit.SECONDS).reactionResponseTos();
+
+            ReactionEvent eventReceived = exchanger.exchange(event, 1, TimeUnit.SECONDS);
+            if (eventReceived.status() != null) {
+                if (eventReceived.status() == HttpStatus.NOT_FOUND) {
+                    throw new ReactionNotFoundException("Reaction not found");
+                }
+            }
+            return eventReceived.reactionResponseTos();
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error parsing to JSON: ", e);
         } catch (TimeoutException | InterruptedException e) {
@@ -79,9 +84,24 @@ public class ReactionProducerService {
             }
             log.debug("Received reaction event: {}", event);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error parsing from JSON to ReactionEvent class: ", e);
+            tryReadHttpStatus(uuid, payload);
         } catch (TimeoutException | InterruptedException e) {
             throw new RuntimeException("Error while sending reaction event: ", e);
+        }
+    }
+
+    private void tryReadHttpStatus(UUID uuid, String payload) {
+        try {
+            HttpStatus httpStatus = HttpStatus.valueOf(payload.split(" ")[1]);
+
+            if (httpStatus == HttpStatus.NOT_FOUND) {
+                Exchanger<ReactionEvent> exchanger = kafkaCache.remove(uuid);
+                if (exchanger != null) {
+                    exchanger.exchange(ReactionEvent.errorStatus(HttpStatus.NOT_FOUND), 1, TimeUnit.SECONDS);
+                }
+            }
+        } catch (IllegalArgumentException | InterruptedException | TimeoutException e) {
+            throw new RuntimeException("Error parsing payload to HttpStatus", e);
         }
     }
 }

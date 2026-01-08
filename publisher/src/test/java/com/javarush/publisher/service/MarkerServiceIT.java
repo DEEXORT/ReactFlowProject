@@ -1,11 +1,9 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.exception.MarkerNotFoundException;
-import com.javarush.reactflow.model.marker.MarkerRequestTo;
-import com.javarush.reactflow.model.marker.MarkerResponseTo;
+import com.javarush.publisher.exception.MarkerNotFoundException;
+import com.javarush.publisher.model.marker.MarkerRequestTo;
+import com.javarush.publisher.model.marker.MarkerResponseTo;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;

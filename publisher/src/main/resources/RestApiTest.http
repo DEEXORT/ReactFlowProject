@@ -1,5 +1,75 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+POST http://localhost:24110/api/v2.0/writers
+Content-Type: application/json
+
+{
+  "login": "customer",
+  "password": "customer",
+  "firstname": "Protected",
+  "lastname": "User",
+  "role": "CUSTOMER"
+}
 
 ###
+
+POST http://localhost:24110/api/v2.0/writers
+Content-Type: application/json
+
+{
+"login": "admin",
+"password": "adminadmin",
+"firstname": "Protected",
+"lastname": "User",
+"role": "ADMIN"
+}
+
+###
+
+POST http://localhost:24110/api/v2.0/login
+Content-Type: application/json
+
+{
+  "login": "customer",
+  "password": "customer"
+}
+
+> {%
+client.global.set("access_token", response.body.access_token)
+ %}
+
+###
+
+POST http://localhost:24110/api/v2.0/login
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "password": "adminadmin"
+}
+
+> {%
+    client.global.set("access_token", response.body.access_token)
+%}
+
+###
+
+GET http://localhost:24110/api/v2.0/writers/28
+Authorization: Bearer {{access_token}}
+
+###
+
+PUT http://localhost:24110/api/v2.0/writers
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "id": 28,
+  "login": "customer",
+  "password": "customer",
+  "firstname": "Protected",
+  "lastname": "User",
+  "role": "CUSTOMER"
+}
+
+###
+
+DELETE http://localhost:24110/api/v1.0/reactions/7414692891601137563

@@ -1,4 +1,4 @@
-package com.javarush.publisher.controller.v1;
+package com.javarush.publisher.controller.v2;
 
 import com.javarush.publisher.model.reaction.ReactionRequestTo;
 import com.javarush.publisher.model.reaction.ReactionResponseTo;
@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,10 +22,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1.0/reactions")
+@RequestMapping("/api/v2.0/reactions")
 @AllArgsConstructor
 @Slf4j
-public class ReactionControllerV1 {
+public class ReactionControllerV2 {
     private final CrudService<ReactionRequestTo, ReactionResponseTo> reactionService;
 
     @GetMapping

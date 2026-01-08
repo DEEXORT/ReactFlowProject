@@ -1,15 +1,15 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.exception.TopicAlreadyExistsException;
-import com.javarush.reactflow.exception.TopicNotFoundException;
-import com.javarush.reactflow.exception.WriterNotFoundException;
-import com.javarush.reactflow.mapper.TopicDto;
-import com.javarush.reactflow.model.topic.Topic;
-import com.javarush.reactflow.model.topic.TopicRequestTo;
-import com.javarush.reactflow.model.topic.TopicResponseTo;
-import com.javarush.reactflow.repository.hibernate.TopicHibernateRepository;
-import com.javarush.reactflow.repository.hibernate.WriterHibernateRepository;
-import com.javarush.reactflow.util.ResourceBundleManager;
+import com.javarush.publisher.exception.TopicAlreadyExistsException;
+import com.javarush.publisher.exception.TopicNotFoundException;
+import com.javarush.publisher.exception.WriterNotFoundException;
+import com.javarush.publisher.mapper.TopicDto;
+import com.javarush.publisher.model.topic.Topic;
+import com.javarush.publisher.model.topic.TopicRequestTo;
+import com.javarush.publisher.model.topic.TopicResponseTo;
+import com.javarush.publisher.repository.hibernate.TopicHibernateRepository;
+import com.javarush.publisher.repository.hibernate.WriterHibernateRepository;
+import com.javarush.publisher.util.ResourceBundleManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

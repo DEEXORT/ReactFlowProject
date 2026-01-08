@@ -1,4 +1,4 @@
-package com.javarush.reactflow.exception;
+package com.javarush.publisher.exception;
 
 public class MarkerAlreadyExistsException extends RuntimeException {
     public MarkerAlreadyExistsException(String message) {

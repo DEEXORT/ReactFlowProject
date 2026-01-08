@@ -1,6 +1,6 @@
-package com.javarush.reactflow.repository;
+package com.javarush.publisher.repository;
 
-import com.javarush.reactflow.model.reaction.Reaction;
+import com.javarush.publisher.model.reaction.Reaction;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

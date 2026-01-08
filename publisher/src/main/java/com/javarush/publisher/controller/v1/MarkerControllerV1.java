@@ -22,7 +22,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/api/v1.0/markers")
 @AllArgsConstructor
-public class MarkerController {
+public class MarkerControllerV1 {
     private final MarkerService markerService;
 
     @GetMapping

@@ -1,7 +1,7 @@
-package com.javarush.reactflow.model.topic;
+package com.javarush.publisher.model.topic;
 
-import com.javarush.reactflow.model.marker.Marker;
-import com.javarush.reactflow.model.writer.Writer;
+import com.javarush.publisher.model.marker.Marker;
+import com.javarush.publisher.model.writer.Writer;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

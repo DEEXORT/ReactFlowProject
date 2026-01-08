@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/api/v1.0/reactions")
 @AllArgsConstructor
 @Slf4j
-public class ReactionController {
+public class ReactionControllerV1 {
     private final CrudService<ReactionRequestTo, ReactionResponseTo> reactionService;
 
     @GetMapping

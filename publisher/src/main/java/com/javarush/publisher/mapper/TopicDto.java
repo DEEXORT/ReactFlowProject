@@ -1,9 +1,9 @@
-package com.javarush.reactflow.mapper;
+package com.javarush.publisher.mapper;
 
-import com.javarush.reactflow.model.marker.Marker;
-import com.javarush.reactflow.model.topic.Topic;
-import com.javarush.reactflow.model.topic.TopicRequestTo;
-import com.javarush.reactflow.model.topic.TopicResponseTo;
+import com.javarush.publisher.model.marker.Marker;
+import com.javarush.publisher.model.topic.Topic;
+import com.javarush.publisher.model.topic.TopicRequestTo;
+import com.javarush.publisher.model.topic.TopicResponseTo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

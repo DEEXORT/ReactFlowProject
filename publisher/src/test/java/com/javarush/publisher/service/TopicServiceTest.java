@@ -1,13 +1,13 @@
-package com.javarush.reactflow.service;
+package com.javarush.publisher.service;
 
-import com.javarush.reactflow.mapper.TopicDto;
-import com.javarush.reactflow.model.marker.Marker;
-import com.javarush.reactflow.model.topic.Topic;
-import com.javarush.reactflow.model.topic.TopicRequestTo;
-import com.javarush.reactflow.model.topic.TopicResponseTo;
-import com.javarush.reactflow.model.writer.Writer;
-import com.javarush.reactflow.repository.hibernate.TopicHibernateRepository;
-import com.javarush.reactflow.repository.hibernate.WriterHibernateRepository;
+import com.javarush.publisher.mapper.TopicDto;
+import com.javarush.publisher.model.marker.Marker;
+import com.javarush.publisher.model.topic.Topic;
+import com.javarush.publisher.model.topic.TopicRequestTo;
+import com.javarush.publisher.model.topic.TopicResponseTo;
+import com.javarush.publisher.model.writer.Writer;
+import com.javarush.publisher.repository.hibernate.TopicHibernateRepository;
+import com.javarush.publisher.repository.hibernate.WriterHibernateRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,12 +15,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -119,6 +120,7 @@ class TopicServiceTest {
 
         assertNotNull(updated);
         assertEquals("content2", updated.getContent());
+
     }
 
     @Test

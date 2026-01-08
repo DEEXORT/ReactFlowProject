@@ -1,6 +1,5 @@
-package com.javarush.reactflow.model.topic;
+package com.javarush.publisher.model.topic;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

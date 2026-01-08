@@ -1,4 +1,4 @@
-package com.javarush.reactflow.config;
+package com.javarush.publisher.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

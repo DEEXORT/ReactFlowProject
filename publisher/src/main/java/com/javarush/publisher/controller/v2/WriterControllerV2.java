@@ -1,4 +1,4 @@
-package com.javarush.publisher.controller;
+package com.javarush.publisher.controller.v2;
 
 import com.javarush.publisher.model.writer.WriterRequestTo;
 import com.javarush.publisher.model.writer.WriterResponseTo;
@@ -29,14 +29,11 @@ public class WriterControllerV2 {
     private WriterService writerService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public Collection<WriterResponseTo> getWriters() {
         return writerService.getAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER') and " +
-            "(@securityService.isOwner(#id, authentication.name) or hasRole('ADMIN'))")
     public WriterResponseTo getWriterById(@PathVariable Long id) {
         return writerService.getById(id);
     }

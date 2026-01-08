@@ -1,4 +1,4 @@
-package com.javarush.publisher.controller.v1;
+package com.javarush.publisher.controller.v2;
 
 import com.javarush.publisher.model.marker.MarkerRequestTo;
 import com.javarush.publisher.model.marker.MarkerResponseTo;
@@ -20,9 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/api/v1.0/markers")
+@RequestMapping("/api/v2.0/markers")
 @AllArgsConstructor
-public class MarkerControllerV1 {
+public class MarkerControllerV2 {
     private final MarkerService markerService;
 
     @GetMapping

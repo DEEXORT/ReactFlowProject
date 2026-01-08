@@ -1,4 +1,4 @@
-package com.javarush.reactflow.util;
+package com.javarush.publisher.util;
 
 import lombok.experimental.UtilityClass;
 

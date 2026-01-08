@@ -1,4 +1,4 @@
-package com.javarush.reactflow.model.writer;
+package com.javarush.publisher.model.writer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,4 +17,5 @@ public class WriterResponseTo {
     String password;
     String firstname;
     String lastname;
+    String role;
 }

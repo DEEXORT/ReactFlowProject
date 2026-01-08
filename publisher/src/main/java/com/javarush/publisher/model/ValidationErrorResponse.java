@@ -1,4 +1,4 @@
-package com.javarush.reactflow.model;
+package com.javarush.publisher.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

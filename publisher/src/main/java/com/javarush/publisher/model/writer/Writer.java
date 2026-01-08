@@ -1,7 +1,9 @@
-package com.javarush.reactflow.model.writer;
+package com.javarush.publisher.model.writer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,4 +37,12 @@ public class Writer {
 
     @Column(nullable = false)
     String lastname;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    Role role;
+
+    public enum Role {
+        ADMIN, CUSTOMER
+    }
 }

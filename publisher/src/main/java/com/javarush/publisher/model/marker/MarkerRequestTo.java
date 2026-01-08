@@ -1,4 +1,4 @@
-package com.javarush.reactflow.model.marker;
+package com.javarush.publisher.model.marker;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

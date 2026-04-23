@@ -1,4 +1,4 @@
-# ReactFlow
+<img width="1536" height="1024" alt="ChatGPT Image 23 апр  2026 г , 09_46_35" src="https://github.com/user-attachments/assets/144a41a9-e918-4c47-8970-5b5aab4ed058" /># ReactFlow
 **ReactFlow** — это высокопроизводительная модульная платформа для управления контентом и пользовательскими реакциями. 
 Проект реализует гибридную архитектуру хранения данных (Polyglot Persistence) и асинхронное взаимодействие через шину событий.
 
@@ -13,6 +13,8 @@
   * **Стек**: Spring Data Cassandra, Apache Cassandra.
   * **Функция**: Хранение и обработка большого объема пользовательских реакций.
   * **Миграции**: Автоматизированное управление схемой Cassandra через Liquibase.
+
+<img width="1536" height="1024" alt="ReactFlow" src="https://github.com/user-attachments/assets/30080a3b-0b47-4fca-acb1-7cf0a82b7e35" />
 
 ## 🛠 Технологический стек
 * **Java 21 & Spring Boot 3.5.9**
